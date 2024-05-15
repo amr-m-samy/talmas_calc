@@ -91,8 +91,17 @@ button:focus {
 }
 
 #body-main{
-  background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,159,25,0.9962185557816877) 28%, rgba(70,0,255,1) 100%);
+  background: rgb(236,122,25);
+background: linear-gradient(180deg, rgba(236,122,25,0) 43%, rgba(68,43,129,1) 100%);
+
+
+
+  /* background: rgb(236,122,25);
+background: linear-gradient(180deg, rgba(236,122,25,0) 72%, rgba(0,0,0,1) 100%); */
+  /* background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,159,25,0.9962185557816877) 28%, rgba(70,0,255,1) 100%); */
+/* background: rgb(236,168,25);
+background: linear-gradient(180deg, rgba(236,168,25,1) 50%, rgba(70,0,255,1) 100%); */
 height: 100vh;
   /* background-color: #220442 !important; */
 }
