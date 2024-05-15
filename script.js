@@ -169,7 +169,7 @@ function Abacus(parentDivId, type, scale) {
     this.update();
     setTimeout(function(){
       that.update()
-  }, 200);
+  }, 300);
 
   };
 
