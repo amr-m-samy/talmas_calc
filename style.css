@@ -91,10 +91,11 @@ button:focus {
 }
 
 #body-main{
-  background: rgb(236,122,25);
-background: linear-gradient(180deg, rgba(236,122,25,0) 43%, rgba(68,43,129,1) 100%);
+  /* background: rgb(236,122,25);
+background: linear-gradient(180deg, rgba(236,122,25,0) 43%, rgba(68,43,129,1) 100%); */
 
-
+background: rgb(236,122,25);
+background: linear-gradient(180deg, rgba(236,122,25,0.24271715522146353) 54%, rgba(68,43,129,1) 100%);
 
   /* background: rgb(236,122,25);
 background: linear-gradient(180deg, rgba(236,122,25,0) 72%, rgba(0,0,0,1) 100%); */
