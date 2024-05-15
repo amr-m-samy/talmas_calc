@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Talmas Simulator</title>
+    <script src="./script.js"></script>
+    <script type="text/javascript">
+      function run() {
+        var scale;
+        if (screen.width < 500) scale = 0.75;
+        else if (screen.width < 768) scale = 1;
+        else scale = 1.5;
+        var abacus = new Abacus("talmas", 0, scale);
+        abacus.init();
+      }
+
+      var flag;
+      const searchParams = new URLSearchParams(window.location.search);
+      for (const param of searchParams) {
+        // console.log(param);
+        flag = param[1];
+      }
+
+      if (flag !== localStorage.getItem("code")) {
+        window.location.href = "login.html"; // Redirect to login page if not authorized
+      }
+
+      window.onresize = function () {
+        location.reload();
+      };
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&family=Seymour+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body onload="run();" style="background-color: #d8d9da !important">
+    <div style="padding: 50px">
+      <img src="static/talmas_logo.png" alt="Talmas" class="logo" />
+    </div>
+    <!-- <button class="mute-btn" onclick="toggleMute()">Mute</button> -->
+    <div class="main-container">
+      <div class="beads_container">
+        <div class="frame">
+          <div class="right-ruler">
+            <ul>
+              <li>10</li>
+              <li>9</li>
+              <li>8</li>
+              <li>7</li>
+              <li>6</li>
+            </ul>
+          </div>
+        </div>
+        <h1 class="vertical-text">
+          T<br /><br />A<br /><br />L<br /><br />M<br /><br />A<br /><br />S
+        </h1>
+
+        <dev id="talmas"> </dev>
+      </div>
+    </div>
+  </body>
+</html>
+
