@@ -246,7 +246,23 @@ function Abacus(parentDivId, type, scale) {
       heightOffset = -30;
       widthOffset = -30;
     }
-    ctx.fillStyle = "#e0e0e0";  // background color  "#8a8a8a" "#b4b4b8"  //
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let bead_no = params.bead;
+    console.log("color", bead_no);
+    if(bead_no === '1')
+    {
+      ctx.fillStyle = "#e0e0e0";
+    }
+    else if(bead_no ==='2')
+    {
+      ctx.fillStyle = "#b4b4b8";
+    }
+    else {
+      ctx.fillStyle = "#e0e0e0";
+    }
+     // background color  "#8a8a8a" "#b4b4b8"  //
     ctx.fillRect(
       10 * abacusCtrl.scale,
       60 * abacusCtrl.scale,
@@ -638,6 +654,29 @@ function Abacus(parentDivId, type, scale) {
   ) {
 
     drawing = new Image();
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let bead_no = params.bead; // "some_value"
+
+    let hoover_image = "static/bead_6.png"
+    let green_bead_image = "static/bead_2.png"
+    let white_bead_image = "static/bead_3.png"
+    if(bead_no==='1'){
+      console.log(bead_no);
+
+    //dimond
+      hoover_image = "static/bead_d_3.png"
+      green_bead_image = "static/bead_d_1.png"
+      white_bead_image = "static/bead_d_2.png"
+    }
+    else if (bead_no === '2'){
+      console.log(bead_no);
+
+      hoover_image = "static/gem_gray.png"
+      green_bead_image = "static/gem_green.png"
+      white_bead_image = "static/gem_white.png"
+    }
 
     //dimond
     // const hoover_image = "static/bead_d_3.png"
@@ -645,9 +684,9 @@ function Abacus(parentDivId, type, scale) {
     // const white_bead_image = "static/bead_d_2.png"
 
     // normal
-    const hoover_image = "static/bead_6.png"
-    const green_bead_image = "static/bead_2.png"
-    const white_bead_image = "static/bead_3.png"
+    // const hoover_image = "static/bead_6.png"
+    // const green_bead_image = "static/bead_2.png"
+    // const white_bead_image = "static/bead_3.png"
 
 
     // const hoover_image = "static/gem_gray.png"
