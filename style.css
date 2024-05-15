@@ -89,6 +89,13 @@ button:focus {
   outline: none; /* Remove default button outline */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a focus effect */
 }
+
+#body-main{
+  background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,159,25,0.9962185557816877) 28%, rgba(70,0,255,1) 100%);
+height: 100vh;
+  /* background-color: #220442 !important; */
+}
 .main-container {
   display: flex;
   justify-content: center;
@@ -97,13 +104,11 @@ button:focus {
   position: relative;
 }
 .frame {
-  border-right: 50px solid black;
-  border-left: 50px solid black;
-  border-bottom: 50px solid black;
-  border-top: 62px solid black;
+  border: 40px solid black;
+
   border-radius: 15px;
-  width: 500px;
-  height: 552px;
+  width: 478px;
+  height: 514px;
   position: absolute;
   top: -2px;
   z-index: -1;
@@ -121,10 +126,12 @@ button:focus {
 
   display: flex;
   flex-direction: column-reverse; /* Stack lines from top to bottom */
-  letter-spacing: -1px; /* Adjust spacing between letters (optional)
-  /* font-weight: bolder; */
+  letter-spacing: 0px; /* Adjust spacing between letters (optional)*/
+  font-weight: 400px;
+  /* font-family: "DM Serif Display", serif; */
+  font-family: "Abril Fatface", serif;
 
-  font-size: 25px;
+  font-size: 40px;
   text-align: center; /* Center text horizontally */
   z-index: 1;
 }
@@ -151,8 +158,8 @@ button:focus {
 }
 @media only screen and (min-width: 768px) {
   .vertical-text {
-    font-size: 40px !important;
-    top: 150px;
+    font-size: 70px !important;
+    top: 135px;
     padding-right: 8px;
 
   }
@@ -161,20 +168,21 @@ button:focus {
   }
   .right-ruler {
     top: 15px !important;
+    right: -32px !important;
   }
   .right-ruler ul li {
     height: 60px !important;
-    font-size: 17px !important;
+    font-size: 13px !important;
   }
   .frame {
-    height: 801px;
-    border-top: 97px black solid;
+    height: 747px;
+    border-top: 51px black solid;
     width: 711px;
   }
 }
 @media only screen and (max-width: 499px) {
   .vertical-text {
-    font-size: 18px !important;
+    font-size: 30px !important;
     top: 80px;
     padding-right: 6px;
   }
@@ -182,26 +190,32 @@ button:focus {
     width: 30%;
   }
   .right-ruler {
-    top: 3px !important;
-    right: -35px !important;
+    top: 20px !important;
+    right: -25px !important;
   }
   .right-ruler ul li {
     height: 30px !important;
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
   .frame {
-    top: -17px;
-    width: 410px;
-    height: 441px;
+    top: -6px;
+    width: 373px;
+    height: 391px;
+    border : 30px black solid;
   }
   #talmas {
     padding-left: 15px !important;
   }
 }
 @media only screen and (max-width: 386px) {
+  .right-ruler {
+
+    right: -25px !important;
+  }
   .right-ruler ul li {
-    font-size: 14px !important;
+    font-size: 10px !important;
     height: 30px !important;
+
   }
 }
 
@@ -210,7 +224,7 @@ button:focus {
   z-index: 1;
   color: white;
   top: 9px;
-  right: -40px;
+  right: -30px;
 
   text-align: center;
 }
@@ -220,7 +234,7 @@ button:focus {
 .right-ruler ul li {
   height: 40px;
 
-  font-size: 15px;
+  font-size: 13px;
 }
 .right-ruler ul li:first-child {
 }

@@ -128,6 +128,37 @@ function Abacus(parentDivId, type, scale) {
     var audio = new Audio("static/bump.wav");
     audio.play();
   }
+
+  function loadBeadImages(){
+    drawing_green_bead = new Image();
+    drawing_white_bead = new Image();
+    drawing_gray_bead = new Image();
+    let hoover_bead_image = "static/bead_6.png"
+    let green_bead_image = "static/bead_2.png"
+    let white_bead_image = "static/bead_3.png"
+
+
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let bead_no = params.bead; // "some_value"
+    if(true ||bead_no==='1'){
+
+    //dimond
+      hoover_bead_image = "static/bead_d_3.png"
+      green_bead_image = "static/bead_d_1.png"
+      white_bead_image = "static/bead_d_2.png"
+    }
+    else if (bead_no === '2'){
+
+      hoover_image = "static/gem_gray.png"
+      green_bead_image = "static/gem_green.png"
+      white_bead_image = "static/gem_white.png"
+    }
+    drawing_green_bead.src = green_bead_image;
+    drawing_white_bead.src = white_bead_image;
+    drawing_gray_bead.src = hoover_bead_image;
+  }
   this.init = function () {
     abacusCtrl.init();
 
@@ -136,7 +167,7 @@ function Abacus(parentDivId, type, scale) {
     if (!canvas) console.log("Abacus error: can not create a canvas element");
     canvas.id = parentDivId + "_Abacus";
     canvas.width = 40 + abacusCtrl.beadLines * abacusCtrl.beadSpacing;
-    canvas.height = 60 + (abacusCtrl.beadPerLine + 2) * abacusCtrl.beadHeight;
+    canvas.height = (-13 * abacusCtrl.scale) + (abacusCtrl.beadPerLine + 2) * abacusCtrl.beadHeight; //new update
 
     document.body.appendChild(canvas);
     var parent = document.getElementById(divId);
@@ -166,6 +197,8 @@ function Abacus(parentDivId, type, scale) {
       canvasTouchEnd(event);
     };
 
+    loadBeadImages()
+
     this.update();
     setTimeout(function(){
       that.update()
@@ -176,10 +209,12 @@ function Abacus(parentDivId, type, scale) {
   function drawBead(nodeId, ctx) {
     var nodePosX = abacusCtrl.getBeadPositionX(nodeId);
     var nodePosY = abacusCtrl.getBeadPositionY(nodeId);
-
+    let bead_y_offset  = 47;  //new update
+    bead_y_offset = screen.width < 768 ? 28 : bead_y_offset; //new update
+    bead_y_offset = screen.width < 500 ? 22 : bead_y_offset; //new update
     var dn = new UIElement(
       nodePosX,
-      nodePosY + 2,
+      nodePosY  - (bead_y_offset),  // new update
       abacusCtrl.beadWidth,
       abacusCtrl.beadHeight - 4,
       0,
@@ -250,7 +285,6 @@ function Abacus(parentDivId, type, scale) {
       get: (searchParams, prop) => searchParams.get(prop),
     });
     let bead_no = params.bead;
-    console.log("color", bead_no);
     if(bead_no === '1')
     {
       ctx.fillStyle = "#e0e0e0";
@@ -263,12 +297,12 @@ function Abacus(parentDivId, type, scale) {
       ctx.fillStyle = "#e0e0e0";
     }
      // background color  "#8a8a8a" "#b4b4b8"  //
-    ctx.fillRect(
-      10 * abacusCtrl.scale,
-      60 * abacusCtrl.scale,
-      canvas.width - 40 * scale - widthOffset,
-      canvas.height - 100 * scale - heightOffset,
-    );
+    // ctx.fillRect(
+    //   10 * abacusCtrl.scale,
+    //   60 * abacusCtrl.scale,
+    //   canvas.width - 40 * scale - widthOffset,
+    //   canvas.height - 100 * scale - heightOffset,
+    // );
 
     // draw grid
     if (false) {
@@ -314,40 +348,37 @@ function Abacus(parentDivId, type, scale) {
     // draw frame
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 10 * abacusCtrl.scale;
+
     for (var i = 0; i < abacusCtrl.beadLines; i++) {
+
+  var x =
+  -(30 * abacusCtrl.scale) +
+  abacusCtrl.beadLines * abacusCtrl.beadSpacing -
+  i * abacusCtrl.beadSpacing;
+var y =
+  23 * abacusCtrl.scale +   //new update
+  (abacusCtrl.beadPerLine + 2) * abacusCtrl.beadHeight;
+ctx.beginPath();
+const grad=ctx.createLinearGradient(x,0,x+10,0);
+grad.addColorStop(0, "white");
+grad.addColorStop(.7, "black");
+let line_offset  = 29 * abacusCtrl.scale;  //new update
+line_offset = screen.width < 768 ? 32 : line_offset; //new update
+line_offset = screen.width < 500 ? 19 : line_offset; //new update
       if (i === 2) {
         ctx.lineWidth = 60 * abacusCtrl.scale;
         ctx.strokeStyle = "#000000";
       } else {
-        ctx.strokeStyle = "#ffffff";
+        ctx.strokeStyle = grad;
         ctx.lineWidth = 10 * abacusCtrl.scale;
       }
-      var x =
-        -(30 * abacusCtrl.scale) +
-        abacusCtrl.beadLines * abacusCtrl.beadSpacing -
-        i * abacusCtrl.beadSpacing;
-      var y =
-        20 * abacusCtrl.scale +
-        (abacusCtrl.beadPerLine + 2) * abacusCtrl.beadHeight;
-      ctx.beginPath();
-      ctx.moveTo(x, 20);
+
+
+      ctx.moveTo(x, line_offset); // new update
       ctx.lineTo(x, y);
       ctx.stroke();
     }
-    for (var j = 0; j < 3; j++) {
-      var y = 20;
-      if (j === 0) {
-        ctx.lineWidth = 50 * abacusCtrl.scale;
-        ctx.strokeStyle = "#000000";
-        y =
-          35 * abacusCtrl.scale +
-          (abacusCtrl.beadPerLine - abacusCtrl.beadSep) * abacusCtrl.beadHeight;
-      }
-      ctx.beginPath();
-      ctx.moveTo(20, y);
-      ctx.lineTo(640, y);
-      ctx.stroke();
-    }
+
     ctx.lineWidth = 0.2 * abacusCtrl.scale;
 
 
@@ -355,10 +386,10 @@ function Abacus(parentDivId, type, scale) {
     // draw value
     ctx.fillStyle = "rgba(255, 255, 255, 1.0)";
     ctx.textAlign = "center";
-    ctx.font = `${17 * abacusCtrl.scale}pt Seymour One, sans-serif`;
+    ctx.font = `${11 * abacusCtrl.scale}pt Seymour One, sans-serif`;
     // ctx.color = "white";
     var textY =
-      screen.width > 499 ? 35 * abacusCtrl.scale : 28 * abacusCtrl.scale;
+      screen.width > 499 ? 15 * abacusCtrl.scale : 15 * abacusCtrl.scale;
     for (var i = 0; i < abacusCtrl.beadLines; i++) {
       if (i === 2) continue;
       var textX =
@@ -401,8 +432,8 @@ function Abacus(parentDivId, type, scale) {
     let minBeadY;
     let remainingBeads;
 
-    if (event.offsetY) beadMouseY = getMouse(event).y - 20 * abacusCtrl.scale;
-    else beadMouseY = getTouch(event).y - 20 * abacusCtrl.scale;
+    if (event.offsetY) beadMouseY = getMouse(event).y + 15 * abacusCtrl.scale;  //new update
+    else beadMouseY = getTouch(event).y + 15 * abacusCtrl.scale;  //new update
     abacusCtrl.nodes[dragging].position[1] = beadMouseY;
 
     if (!abacusCtrl.nodes[dragging].active) {
@@ -652,68 +683,9 @@ function Abacus(parentDivId, type, scale) {
     nodeId,
     hoover,
   ) {
-
-    drawing = new Image();
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
-    let bead_no = params.bead; // "some_value"
-
-    let hoover_image = "static/bead_6.png"
-    let green_bead_image = "static/bead_2.png"
-    let white_bead_image = "static/bead_3.png"
-    if(bead_no==='1'){
-      console.log(bead_no);
-
-    //dimond
-      hoover_image = "static/bead_d_3.png"
-      green_bead_image = "static/bead_d_1.png"
-      white_bead_image = "static/bead_d_2.png"
-    }
-    else if (bead_no === '2'){
-      console.log(bead_no);
-
-      hoover_image = "static/gem_gray.png"
-      green_bead_image = "static/gem_green.png"
-      white_bead_image = "static/gem_white.png"
-    }
-
-    //dimond
-    // const hoover_image = "static/bead_d_3.png"
-    // const green_bead_image = "static/bead_d_1.png"
-    // const white_bead_image = "static/bead_d_2.png"
-
-    // normal
-    // const hoover_image = "static/bead_6.png"
-    // const green_bead_image = "static/bead_2.png"
-    // const white_bead_image = "static/bead_3.png"
-
-
-    // const hoover_image = "static/gem_gray.png"
-    // const green_bead_image = "static/gem_green.png"
-    // const white_bead_image = "static/gem_white.png"
-    if (nodeId >= 30 && nodeId <= 39) {
-      if (nodeId === 30) {
-        drawing.src = hoover_image;
-        ctx.drawImage(drawing, x, y, width, height);
-      } else {
-        if (!hoover) {
-          drawing.src = white_bead_image;
-          ctx.drawImage(drawing, x, y, width, height);
-        } else {
-          drawing.src = hoover_image;
-          ctx.drawImage(drawing, x, y, width, height);
-        }
-      }
-    } else {
-      if (!hoover) {
-        drawing.src = green_bead_image;
-        ctx.drawImage(drawing, x, y, width, height);
-      } else {
-        drawing.src = hoover_image;
-        ctx.drawImage(drawing, x, y, width, height);
-      }
-    }
+    if (nodeId >= 31 && nodeId <= 39)  ctx.drawImage(drawing_white_bead, x, y, width, height);
+    else  ctx.drawImage(drawing_green_bead, x, y, width, height);
+    if ( nodeId === 30 || hoover) ctx.drawImage(drawing_gray_bead, x, y, width, height);
 
   }
 
