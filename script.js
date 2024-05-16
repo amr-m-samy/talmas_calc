@@ -622,9 +622,10 @@ function Abacus(parentDivId, type, scale) {
   }
 
   function canvasTouchEnd(event) {
-    restorOriginalY();
+    const dont_touch_move = restorOriginalY();
+
     if (!event.altKey && event.touches.length === 0) {
-      if (dragging !== -1 && dragging !== 30) abacusCtrl.activated(dragging);
+      if (dragging !== -1 && dragging !== 30 && dont_touch_move) abacusCtrl.activated(dragging);
       draggedNow = [];
       that.update();
       dragging = -1;
