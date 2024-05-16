@@ -392,7 +392,7 @@ function Abacus(parentDivId, type, scale) {
     ctx.font = `${11 * abacusCtrl.scale}pt Seymour One, sans-serif`;
     // ctx.color = "white";
     var textY =
-      screen.width > 499 ? 15 * abacusCtrl.scale : 15 * abacusCtrl.scale;
+      screen.width > 499 ? 15 * abacusCtrl.scale : 12 * abacusCtrl.scale;
     for (var i = 0; i < abacusCtrl.beadLines; i++) {
       if (i === 2) continue;
       var textX =
