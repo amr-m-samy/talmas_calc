@@ -91,18 +91,10 @@ button:focus {
 }
 
 #body-main{
-  /* background: rgb(236,122,25);
-background: linear-gradient(180deg, rgba(236,122,25,0) 43%, rgba(68,43,129,1) 100%); */
 
 background: rgb(236,122,25);
 background: linear-gradient(180deg, rgba(236,122,25,0.24271715522146353) 54%, rgba(68,43,129,1) 100%);
 
-  /* background: rgb(236,122,25);
-background: linear-gradient(180deg, rgba(236,122,25,0) 72%, rgba(0,0,0,1) 100%); */
-  /* background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,159,25,0.9962185557816877) 28%, rgba(70,0,255,1) 100%); */
-/* background: rgb(236,168,25);
-background: linear-gradient(180deg, rgba(236,168,25,1) 50%, rgba(70,0,255,1) 100%); */
 height: 100vh;
   /* background-color: #220442 !important; */
 }
@@ -118,9 +110,9 @@ height: 100vh;
 
   border-radius: 15px;
   width: 478px;
-  height: 514px;
+  height: 520px;
   position: absolute;
-  top: -2px;
+  top: -8px;
   z-index: -1;
   /* box-shadow: 9px -20px #888888; */
   box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.9);
@@ -134,9 +126,7 @@ height: 100vh;
   color: #ffc26f;
   position: absolute;
 
-  display: flex;
-  flex-direction: column-reverse; /* Stack lines from top to bottom */
-  letter-spacing: 0px; /* Adjust spacing between letters (optional)*/
+  /* display: flex; */
   font-weight: 400px;
   /* font-family: "DM Serif Display", serif; */
   font-family: "Abril Fatface", serif;
@@ -152,13 +142,7 @@ height: 100vh;
   align-items: center; /* Vertically center content */
   margin: 0; /* Remove default body margins */
   position: relative;
-  /* width: 500px; */
-  /* font-family: "Jersey 25", sans-serif; */
-  /* font-weight: 400; */
-  /* font-style: normal; */
-  /* font-family: "Jersey 10", sans-serif; */
-  /* font-weight: 500; */
-  /* font-style: normal; */
+
   font-family: "Seymour One", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -168,8 +152,8 @@ height: 100vh;
 }
 @media only screen and (min-width: 768px) {
   .vertical-text {
-    font-size: 70px !important;
-    top: 135px;
+    font-size: 60px !important;
+    top: 120px !important;
     padding-right: 8px;
 
   }
@@ -185,22 +169,22 @@ height: 100vh;
     font-size: 13px !important;
   }
   .frame {
-    height: 747px;
-    border-top: 51px black solid;
+    height: 741px;
     width: 711px;
+    top:-2px;
   }
 }
 @media only screen and (max-width: 499px) {
   .vertical-text {
     font-size: 30px !important;
-    top: 80px;
+    top: 60px;
     padding-right: 6px;
   }
   .logo {
     width: 30%;
   }
   .right-ruler {
-    top: 20px !important;
+    top: 10px !important;
     right: -25px !important;
   }
   .right-ruler ul li {
